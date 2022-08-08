@@ -1,10 +1,12 @@
+//import { Route } from 'react-router-dom';
 import './App.css';
-import LandingPage from './components/Landing/Landing.jsx';
+//import Landing from './components/Landing/Landing.jsx';
+import Home from './components/Home/Home.jsx';
 
 function App() {
   return (
     <div>
-      <LandingPage />
+      <Home />
     </div>
   );
 }
