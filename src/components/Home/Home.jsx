@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { getAllVideogames } from '../../redux/actions.js';
 
+//Components
 import GameCard from '../Game/GameCard.jsx';
+import Loading from '../Loading/Loading.jsx';
 
 const Home = () => {
 
@@ -25,17 +27,18 @@ const Home = () => {
 
     return(
         <div>
-            ESTOY EN EL HOME
-
             <div>
-            {state.videogames.length > 0 && state.videogames[0] !== undefined ? (
-                state.videogames.map((game, key) => 
-                    <GameCard videogames={game} key={key} />
-                ))
-                    : <div>NO HAY JUEGOS</div>
-            }
+                {
+                    state.videogames.length > 0 ? (
+                        state.videogames.map((game, key) => 
+                            <GameCard 
+                                videogames={game} 
+                                key={key} 
+                            />
+                    ))
+                        : <Loading />
+                }
             </div>
-
         </div>
     )
 }

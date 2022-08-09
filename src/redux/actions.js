@@ -5,7 +5,7 @@ export const GET_VIDEOGAMES = 'GET_VIDEOGAMES'
 export const GET_GENRES = 'GET_GENRES'
 export const GET_GAME = 'GET_GAME'
 
-const url = 'http://localhost:3001/videogames'
+const url = 'http://localhost:3001/videogames/'
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
@@ -19,10 +19,15 @@ export const getAllVideogames = () => async (dispatch) => {
     }
 }
 
-export const getOneVideogame = (gameId) => {
-    return {
-        type: GET_GAME,
-        payload: gameId
+export const getOneVideogame = (gameId) => async (dispatch) => {
+    try {
+        const res = await axios.get(url + gameId)
+        dispatch({
+            type: GET_GAME,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error)
     }
 }
 

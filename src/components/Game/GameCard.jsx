@@ -1,18 +1,25 @@
 import React from 'react';
+import styles from './GameCard.module.css';
 
 const GameCard = (props) => {
     
     const { videogames } = props
 
     return(
-        <div>
-            <div>NAMES: {videogames.name}</div>
-            <div>RATING: {videogames.rating}</div>
-            <div>ID: {videogames.id}</div>
-            <div>GENRES: {videogames.genres.map(g => g)}</div>
-            <div>PLATFORMS: {videogames.platforms.map(p => p)}</div>
+        <div className={styles.cardContainer}>
+            <div>{videogames.name}</div>
+            <img src={videogames.img} alt={videogames.name} className={styles.gameImg} />
+            <div>GENRES: {videogames.genres.map(g => {
+                return <div className={styles.genre}>{g}</div>
+            })}</div>
         </div>
     )
 }
 
 export default GameCard;
+
+/*
+    Imagen
+    Nombre
+    Géneros
+*/
