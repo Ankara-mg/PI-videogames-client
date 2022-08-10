@@ -39,9 +39,15 @@ export const createVideogame = (gameData) => {
     }
 }
 
-export const getGenres = () => {
-    return {
-        type: GET_GENRES
+export const getGenres = () => async (dispatch) => {
+    try {
+        const res = await axios.get('http://localhost:3001/genres')
+        dispatch({
+            type: GET_GENRES,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error)
     }
 }
 

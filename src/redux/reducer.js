@@ -3,6 +3,7 @@ import { GET_GAME, GET_GENRES, GET_VIDEOGAMES, CREATE_VIDEOGAME, SEARCH_GAME } f
 const initialState = {
     videogames: [],
     videogame: {},
+    genres: []
 }
 
 export const videogameReducer = (state = initialState, action) => {
@@ -14,7 +15,10 @@ export const videogameReducer = (state = initialState, action) => {
             }
         
         case GET_GENRES:
-            return state
+            return {
+                ...state,
+                genres: action.payload
+            }
         
         case CREATE_VIDEOGAME:
             return state
