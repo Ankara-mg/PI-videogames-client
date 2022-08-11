@@ -32,10 +32,16 @@ export const getOneVideogame = (gameId) => async (dispatch) => {
     }
 }
 
-export const createVideogame = (gameData) => {
-    return {
-        type: CREATE_VIDEOGAME,
-        payload: gameData
+export const createVideogame = (gameData) => async (dispatch) => {
+
+    try {
+        const res = await axios.post('http://localhost:3001/videogame/create', gameData)
+        dispatch({
+            type: CREATE_VIDEOGAME,
+            payload: res.data
+        })
+    } catch (error) {
+        console.log(error)
     }
 }
 
