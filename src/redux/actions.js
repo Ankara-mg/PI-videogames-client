@@ -1,20 +1,26 @@
 import axios from 'axios'
 
+export const TOGGLE_LOADING = 'TOGGLE_LOADING'
 export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME'
 export const GET_VIDEOGAMES = 'GET_VIDEOGAMES'
 export const GET_GENRES = 'GET_GENRES'
 export const GET_GAME = 'GET_GAME'
 export const SEARCH_GAME = 'SEARCH_GAME'
+export const FILTER_GAMES_OK = 'FILTER_GAMES_OK'
+export const FILTER_GAMES_ERROR = 'FILTER_GAMES_ERROR'
+export const RESET_ERRORS = 'RESET_ERRORS'
 
 const url = 'http://localhost:3001/videogames'
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
+        dispatch({type: TOGGLE_LOADING})
         const res = await axios.get(url)
         dispatch({
             type: GET_VIDEOGAMES,
             payload: res.data
         })
+        dispatch({type: TOGGLE_LOADING})
     } catch (error) {
         console.log(error)
     }
@@ -22,11 +28,13 @@ export const getAllVideogames = () => async (dispatch) => {
 
 export const getOneVideogame = (gameId) => async (dispatch) => {
     try {
+        dispatch({type: TOGGLE_LOADING})
         const res = await axios.get(url + '/' + gameId)
         dispatch({
             type: GET_GAME,
             payload: res.data
         })
+        dispatch({type: TOGGLE_LOADING})
     } catch (error) {
         console.log(error)
     }
@@ -59,12 +67,43 @@ export const getGenres = () => async (dispatch) => {
 
 export const searchGames = (gameName) => async (dispatch )=> {
     try {
+        dispatch({type: TOGGLE_LOADING})
         const res = await axios.get(url + `?name=${gameName}`)
         dispatch({
             type: SEARCH_GAME,
             payload: res.data
         })
+        dispatch({type: TOGGLE_LOADING})
     } catch (error) {
         console.log(error)
     }
+}
+
+export const filterVideogames = (allGames, genres) => dispatch => {
+
+    const filtered = []
+    
+    for(let i = 0 ; i < allGames.length ; i++){
+        if(allGames[i].genres.filter(element => genres.includes(element)).length > 0){
+            filtered.push(allGames[i])
+        }
+    }
+    
+    if(filtered.length > 0){
+        dispatch({
+            type: FILTER_GAMES_OK,
+            payload: filtered,
+        })
+    } else {
+        dispatch({
+            type: FILTER_GAMES_ERROR,
+            payload: 'No se encontraron juegos.'
+        })
+    }
+}
+
+export const resetErrors = () => dispatch => {
+    dispatch({
+        type: RESET_ERRORS,
+    })
 }

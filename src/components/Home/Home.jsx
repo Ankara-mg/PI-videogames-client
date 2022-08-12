@@ -7,13 +7,15 @@ import { getAllVideogames } from '../../redux/actions.js';
 import Loading from '../Loading/Loading.jsx';
 import Cards from '../Cards/Cards.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
+import Filters from '../Filters/Filters.jsx';
 
 const Home = () => {
 
     const dispatch = useDispatch();
 
-    const { videogames } = useSelector(state => state)
+    const { videogames, filterGames, errors } = useSelector(state => state)
     const [games, setGames] = useState([]);
+    const { loading } = useSelector(state => state)
     
     useEffect(() => {
         dispatch(getAllVideogames())
@@ -21,18 +23,22 @@ const Home = () => {
  
     
     useEffect(() => {
-        setGames(videogames)
-    }, [videogames])
-    
+        setGames(filterGames)
+    }, [filterGames])
+
+    console.log(filterGames.length)
 
     return(
         <div>
             <div>
-                <SearchBar />
                 {
-                    videogames.length > 0 ? 
-                    <Cards videogames={videogames} />
-                    : <Loading />
+                    loading ? 
+                    <Loading /> :
+                    <div>
+                        <SearchBar />
+                        <Filters videogames={videogames}/>
+                        <Cards videogames={games} errors={errors} />
+                    </div>
                 }
             </div>
         </div>
