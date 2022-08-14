@@ -12,6 +12,7 @@ const GameCard = (props) => {
             <div>GENRES: {videogames.genres.map(g => {
                 return <div className={styles.genre}>{g}</div>
             })}</div>
+            <div>{videogames.rating}</div>
         </div>
     )
 }

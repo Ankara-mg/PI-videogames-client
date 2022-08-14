@@ -9,6 +9,8 @@ export const SEARCH_GAME = 'SEARCH_GAME'
 export const FILTER_GAMES_OK = 'FILTER_GAMES_OK'
 export const FILTER_GAMES_ERROR = 'FILTER_GAMES_ERROR'
 export const RESET_ERRORS = 'RESET_ERRORS'
+export const SORT_GAMES = 'SORT_GAMES'
+export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 
 const url = 'http://localhost:3001/videogames'
 
@@ -100,6 +102,53 @@ export const filterVideogames = (allGames, genres) => dispatch => {
             payload: 'No se encontraron juegos.'
         })
     }
+}
+
+export const sortGames = (allGames, sortBy, type) => dispatch => {
+
+    const sortedGames = allGames.map(obj => ({...obj}))
+
+    switch(sortBy){
+        case 'name':
+
+        case 'rating':
+            let menorMayor, posicion, cambios, aux
+        
+              for(let i = 0 ; i < sortedGames.length; i++){
+                menorMayor = sortedGames[i]
+                console.log(menorMayor)
+                for(let j = i; j < sortedGames.length ; j++){
+                    if(sortedGames[j].rating < menorMayor.rating && type === 'ascending'){
+                        menorMayor = sortedGames[j]
+                        posicion = j
+                        cambios = true
+                    }else if(sortedGames[j].rating > menorMayor.rating && type === 'descending'){
+                        menorMayor = sortedGames[j]
+                        posicion = j
+                        cambios = true
+                    }
+                }
+        
+                if(cambios){
+                    cambios = false
+                    aux = sortedGames[i]
+                    sortedGames[i] = menorMayor
+                    sortedGames[posicion] = aux  
+                }
+            }
+
+            dispatch({
+                type: SORT_GAMES,
+                payload: sortedGames
+            })
+            break;
+            
+        default:
+            dispatch({
+                type: SORT_GAMES_DEFAULT,
+            })
+    }
+
 }
 
 export const resetErrors = () => dispatch => {

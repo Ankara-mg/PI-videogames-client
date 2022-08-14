@@ -8,6 +8,8 @@ import {
     FILTER_GAMES_ERROR, 
     TOGGLE_LOADING,
     RESET_ERRORS,
+    SORT_GAMES,
+    SORT_GAMES_DEFAULT,
 } from "./actions"
 
 const initialState = {
@@ -30,7 +32,7 @@ export const videogameReducer = (state = initialState, action) => {
         case GET_VIDEOGAMES:
             return {
                 ...state,
-                videogames: action.payload,
+                allVideogames: action.payload,
                 filterGames: action.payload
             }
         
@@ -74,6 +76,18 @@ export const videogameReducer = (state = initialState, action) => {
             return{
                 ...state,
                 errors: ''
+            }
+        
+        case SORT_GAMES:
+            return{
+                ...state,
+                filterGames: action.payload
+            }
+        
+        case SORT_GAMES_DEFAULT:
+            return{
+                ...state,
+                filterGames: state.allVideogames
             }
         
         default:
