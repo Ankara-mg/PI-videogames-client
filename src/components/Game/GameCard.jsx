@@ -10,7 +10,7 @@ const GameCard = (props) => {
             <div>{videogames.name}</div>
             <img src={videogames.img} alt={videogames.name} className={styles.gameImg} />
             <div>GENRES: {videogames.genres.map(g => {
-                return <div className={styles.genre}>{g}</div>
+                return <div className={styles.genre}>{g.name}</div>
             })}</div>
             <div>{videogames.rating}</div>
         </div>

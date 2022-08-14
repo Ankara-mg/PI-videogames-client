@@ -19,6 +19,7 @@ const CreateGame = () => {
         description: '',
         releaseDate: '',
         rating: '',
+        image: '',
         platforms: [],
         genres: [],
         created: true,
@@ -92,7 +93,7 @@ const CreateGame = () => {
         }
     }
 
-    console.log('errores', errors)
+    console.log(input.image)
 
     //----------- VALIDAR ERRORES ----------------------
 
@@ -143,6 +144,11 @@ const CreateGame = () => {
                         onChange={handleInputChange} 
                     />
                     { errors.name && (<p>{errors.name}</p>) }
+                </div>
+
+                <div>
+                    <label>Imagen</label>
+                    <input type="file" value={input.image} name='image' onChange={handleInputChange} />
                 </div>
 
                 <div>

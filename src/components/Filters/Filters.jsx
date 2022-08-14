@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterVideogames, getAllVideogames, getGenres, resetErrors } from "../../redux/actions";
+import { filterVideogames, getFromDb, getAllVideogames, getGenres, resetErrors } from "../../redux/actions";
 
 const Filters = (props) => {
 
@@ -8,38 +8,61 @@ const Filters = (props) => {
     const { genres } = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const [selection, setSelection] = useState([])
+    const [genSelection, setGenSelection] = useState([])
+    const [dbSelection, setDbSelection] = useState('allGames')
     const [change, setChange] = useState(false)
 
     useEffect(() => {
         dispatch(getGenres())
     }, []);
 
+    const handleSelectGen = (filter) => {
+        setGenSelection([...genSelection, filter.target.value])
+        setChange(true)
+    }
+
     const handleSelect = (filter) => {
-        setSelection([...selection, filter.target.value])
+        setDbSelection(filter.target.value)
         setChange(true)
     }
 
     useEffect(() => {
         if(change == true){
-            dispatch(filterVideogames(videogames, selection))
-            if(selection.length == 0){
+            dispatch(filterVideogames(videogames, genSelection))
+            if(genSelection.length == 0){
                 dispatch(getAllVideogames())
                 dispatch(resetErrors())
             }
         }
-    },[selection])
+    },[genSelection])
+
+    useEffect(() => {
+        if(change === true){
+            dispatch(getFromDb(videogames, dbSelection))
+        }
+    }, [dbSelection])
 
     const removeItem = (gen) => {
-        setSelection(
-            selection.filter(g => g != gen)
+        setGenSelection(
+            genSelection.filter(g => g != gen)
         )
     }
 
+    console.log(dbSelection)
+
     return(
         <div>
-            <select name="filter" onChange={(sel) => handleSelect(sel)} >
-                <option disabled selected>Filtrar por géneros</option>
+
+            <select name="db" onChange={(sel) => handleSelect(sel)}>
+                <option disabled selected>Filtrar por ...</option>
+                <option value='dbGames'>Juegos creados</option>
+                <option value='apiGames'>Juegos de la API</option>
+                <option value='allGames'>Todos los juegos</option>
+            </select>
+
+
+            <select name="filter" onChange={(sel) => handleSelectGen(sel)} >
+                <option disabled selected>Géneros</option>
                 {
                     genres.map(g => {
                         return <option value={g.name} key={g.id}>{g.name}</option>
@@ -47,7 +70,7 @@ const Filters = (props) => {
                 }
             </select>
             {
-                selection.map(g => {
+                genSelection.map(g => {
                     return(
                         <div>
                             {g}

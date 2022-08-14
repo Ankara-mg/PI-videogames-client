@@ -9,6 +9,7 @@ import Cards from '../Cards/Cards.jsx';
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import Filters from '../Filters/Filters.jsx';
 import Sorting from '../Sorting/Sorting.jsx';
+import Pagination from '../Pagination/Pagination.jsx';
 
 const Home = () => {
 
@@ -30,6 +31,19 @@ const Home = () => {
     console.log('filtergames',filterGames)
     console.log('videogames', allVideogames)
 
+    // --------------- PAGINATION
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [cardsPerPage, setCardsPerPage] = useState(3)
+
+    const indiceUltimaCard = currentPage * cardsPerPage
+    const indicePrimerCard = indiceUltimaCard - cardsPerPage
+    const currentCards = games.slice(indicePrimerCard, indiceUltimaCard)
+
+    const cambiarPage = (pageNum) => {
+        setCurrentPage(pageNum)
+    }
+
     return(
         <div>
             <div>
@@ -41,7 +55,8 @@ const Home = () => {
                         <SearchBar />
                         <Sorting games={filterGames} />
                         <Filters videogames={allVideogames}/>
-                        <Cards videogames={games} errors={errors} />
+                        <Cards videogames={currentCards} errors={errors} />
+                        <Pagination cardsPerPage={cardsPerPage} totalCards={filterGames.length} cambiarPage={cambiarPage} />
                     </div>
                 }
             </div>

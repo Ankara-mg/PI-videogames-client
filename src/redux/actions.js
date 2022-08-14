@@ -2,7 +2,8 @@ import axios from 'axios'
 
 export const TOGGLE_LOADING = 'TOGGLE_LOADING'
 export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME'
-export const GET_VIDEOGAMES = 'GET_VIDEOGAMES'
+export const GET_VIDEOGAMES_OK = 'GET_VIDEOGAMES'
+export const GET_VIDEOGAMES_ERROR = 'GET_VIDEOGAMES_ERROR'
 export const GET_GENRES = 'GET_GENRES'
 export const GET_GAME = 'GET_GAME'
 export const SEARCH_GAME = 'SEARCH_GAME'
@@ -19,12 +20,16 @@ export const getAllVideogames = () => async (dispatch) => {
         dispatch({type: TOGGLE_LOADING})
         const res = await axios.get(url)
         dispatch({
-            type: GET_VIDEOGAMES,
+            type: GET_VIDEOGAMES_OK,
             payload: res.data
         })
         dispatch({type: TOGGLE_LOADING})
     } catch (error) {
-        console.log(error)
+        dispatch({type: TOGGLE_LOADING})
+        dispatch({
+            type: GET_VIDEOGAMES_ERROR,
+            payload: 'No se encontraron juegos.'
+        })
     }
 }
 
@@ -100,6 +105,32 @@ export const filterVideogames = (allGames, genres) => dispatch => {
         dispatch({
             type: FILTER_GAMES_ERROR,
             payload: 'No se encontraron juegos.'
+        })
+    }
+}
+
+export const getFromDb = (allGames, type) => dispatch => {
+    const filtered = []
+
+    for(let i = 0 ; i < allGames.length ; i++){
+        if(allGames[i].created && type === 'dbGames'){
+            filtered.push(allGames[i])
+        } else if(!allGames[i].created && type === 'apiGames'){
+            filtered.push(allGames[i])
+        } else if (type === 'allGames'){
+            filtered.push(allGames[i])
+        }
+    }
+
+    if(filtered.length > 0){
+        dispatch({
+            type: FILTER_GAMES_OK,
+            payload: filtered
+        })
+    } else {
+        dispatch({
+            type: FILTER_GAMES_ERROR,
+            payload: 'No se encontraron videojuegos'
         })
     }
 }

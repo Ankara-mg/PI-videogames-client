@@ -1,7 +1,8 @@
 import { 
     GET_GAME, 
     GET_GENRES, 
-    GET_VIDEOGAMES, 
+    GET_VIDEOGAMES_OK,
+    GET_VIDEOGAMES_ERROR,
     CREATE_VIDEOGAME, 
     SEARCH_GAME, 
     FILTER_GAMES_OK, 
@@ -29,7 +30,7 @@ export const videogameReducer = (state = initialState, action) => {
                 loading: !state.loading
             }
 
-        case GET_VIDEOGAMES:
+        case GET_VIDEOGAMES_OK:
             return {
                 ...state,
                 allVideogames: action.payload,
@@ -65,7 +66,7 @@ export const videogameReducer = (state = initialState, action) => {
                 ...state,
                 filterGames: action.payload
             }
-        
+        case GET_VIDEOGAMES_ERROR:           
         case FILTER_GAMES_ERROR:
             return{
                 ...state,
