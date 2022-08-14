@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import GameCard from "../Game/GameCard";
 
@@ -13,10 +14,12 @@ const Cards = (props) => {
                 <div>{errors}</div>
                 :
                 videogames.map((game, key) => 
-                    <GameCard 
-                        videogames={game} 
-                        key={key} 
-                    />
+                    <Link to={`/videogames/${game.id}`}>
+                        <GameCard 
+                            videogames={game} 
+                            key={key} 
+                        />
+                    </Link>
                 )
             }
         </div>

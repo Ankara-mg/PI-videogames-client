@@ -110,7 +110,21 @@ export const sortGames = (allGames, sortBy, type) => dispatch => {
 
     switch(sortBy){
         case 'name':
-
+            sortedGames.sort( (a, b) => {
+                if(a.name < b.name){
+                    return -1
+                } else if(a.name > b.name){
+                    return 1
+                } else {
+                    return 0
+                }
+            })
+            dispatch({
+                type: SORT_GAMES,
+                payload: type === 'ascending' ? sortedGames : sortedGames.reverse()
+            })
+            break;
+        
         case 'rating':
             let menorMayor, posicion, cambios, aux
         
@@ -118,11 +132,7 @@ export const sortGames = (allGames, sortBy, type) => dispatch => {
                 menorMayor = sortedGames[i]
                 console.log(menorMayor)
                 for(let j = i; j < sortedGames.length ; j++){
-                    if(sortedGames[j].rating < menorMayor.rating && type === 'ascending'){
-                        menorMayor = sortedGames[j]
-                        posicion = j
-                        cambios = true
-                    }else if(sortedGames[j].rating > menorMayor.rating && type === 'descending'){
+                    if(sortedGames[j].rating < menorMayor.rating){
                         menorMayor = sortedGames[j]
                         posicion = j
                         cambios = true
@@ -139,7 +149,7 @@ export const sortGames = (allGames, sortBy, type) => dispatch => {
 
             dispatch({
                 type: SORT_GAMES,
-                payload: sortedGames
+                payload: type === 'descending' ? sortedGames.reverse() : sortedGames
             })
             break;
             

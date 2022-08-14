@@ -12,7 +12,7 @@ const CreateGame = () => {
     const dispatch = useDispatch()
     const [errors, setErrors] = useState({})
     const genres = useSelector(state => state.genres)
-    const allGames = useSelector(state => state.videogames)  
+    const allGames = useSelector(state => state.allVideogames)  
     
     const [input, setInput] = useState({
         name: '',

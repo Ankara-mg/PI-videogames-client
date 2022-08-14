@@ -1,7 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { getOneVideogame } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 import Loading from "../Loading/Loading";
 
@@ -27,6 +28,7 @@ const GameDetail = (props) => {
                 : 
                     <Loading />
             }
+            <Link to='/home'>Regresar</Link>
         </div>
     )
 

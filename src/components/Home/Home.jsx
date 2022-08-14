@@ -37,9 +37,9 @@ const Home = () => {
                     loading ? 
                     <Loading /> :
                     <div>
+                        <Link to='/videogame/create'> <button>CREAR VIDEOJUEGO</button> </Link>
                         <SearchBar />
                         <Sorting games={filterGames} />
-                        <Link to='/videogame/create'> <button>CREAR VIDEOJUEGO</button> </Link>
                         <Filters videogames={allVideogames}/>
                         <Cards videogames={games} errors={errors} />
                     </div>
