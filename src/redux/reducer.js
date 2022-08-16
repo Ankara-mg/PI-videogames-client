@@ -11,6 +11,7 @@ import {
     RESET_ERRORS,
     SORT_GAMES,
     SORT_GAMES_DEFAULT,
+    FILTER_GAMES_RESET,
 } from "./actions"
 
 const initialState = {
@@ -66,6 +67,7 @@ export const videogameReducer = (state = initialState, action) => {
                 ...state,
                 filterGames: action.payload
             }
+        
         case GET_VIDEOGAMES_ERROR:           
         case FILTER_GAMES_ERROR:
             return{
@@ -85,10 +87,11 @@ export const videogameReducer = (state = initialState, action) => {
                 filterGames: action.payload
             }
         
+        case FILTER_GAMES_RESET:
         case SORT_GAMES_DEFAULT:
             return{
                 ...state,
-                filterGames: state.allVideogames
+                filterGames: state.allVideogames,
             }
         
         default:

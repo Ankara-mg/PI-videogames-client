@@ -1,0 +1,102 @@
+.container {
+    background-image: url('../../img/home-bg-5.jpg');
+    background-color: #112a30;
+    background-size: cover;
+    background-attachment: inherit;
+    
+    width: 100vw;
+    height: 100vh;
+
+    
+    overflow:scroll;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.formTitle{
+    color: white;
+    
+}
+
+form{
+    background-color: rgba(247, 160, 255, 0.219);
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 100px;
+}
+
+.input {
+    background-color: #c4b4f9b4;
+    padding: 5px 50px;
+    border: 3px solid #7b7dda;
+    margin: 5px;
+    border-radius: 2px;
+}
+
+.formSection{
+    color: white;
+    font-size: small;
+    font-weight: bolder;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formImage {
+    width: 260px;
+    height: 150px;
+    border: 1px solid #09a7ad;
+    border-radius: 50px;
+}
+
+.formButtons {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.formErrors {
+    color: white;
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #e60073, 0 0 4px #e60073, 0 0 5px #e60073, 
+        0 0 6px #e60073, 0 0 7px #e60073;
+    margin: 0px;
+    padding: 0px 0px 20px 0px;
+}
+
+.removeButton {
+    background-color: #445089;
+    color: white;
+    border: 1px solid #1a2540;
+    border-radius: 5px;
+    padding: 4px 7px;
+    margin: 3px 10px;
+}
+
+.removeButton:hover {
+    background-color: #1a2540;
+    border: 1px solid #445089;
+    cursor: pointer;
+}
+
+.submitBtn {
+    background-color: #445089;
+    color: white;
+    border: 1px solid #1a2540;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin: 3px 10px;
+    font-size: large;
+}
+
+.submitBtn:hover {
+    background-color: #1a2540;
+    border: 1px solid #445089;
+    cursor: pointer;
+}

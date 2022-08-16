@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './Pagination.module.css';
 
 const Pagination = ( {cambiarPage, cardsPerPage, totalCards} ) => {
 
@@ -9,10 +10,10 @@ const Pagination = ( {cambiarPage, cardsPerPage, totalCards} ) => {
     }
 
     return(
-        <div>
+        <div className={styles.container}>
             {pageNumbers.map(num => (
                 <li key={num}>
-                    <button onClick={() => cambiarPage(num)}>{num}</button>
+                    <button className={styles.pageButtons} onClick={() => cambiarPage(num)}>{num}</button>
                 </li>
             ))}
         </div>

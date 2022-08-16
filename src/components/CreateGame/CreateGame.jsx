@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getGenres, createVideogame, getAllVideogames } from "../../redux/actions";
+import styles from './CreateGame.module.css';
+import formtitle from '../../img/form2.png'
 
 const CreateGame = () => {
     
@@ -15,11 +17,11 @@ const CreateGame = () => {
     const allGames = useSelector(state => state.allVideogames)  
     
     const [input, setInput] = useState({
-        name: '',
-        description: '',
-        releaseDate: '',
-        rating: '',
-        image: '',
+        name: undefined,
+        description: undefined,
+        releaseDate: undefined,
+        rating: undefined,
+        img: undefined,
         platforms: [],
         genres: [],
         created: true,
@@ -80,7 +82,6 @@ const CreateGame = () => {
     const handleSubmit = function(e) {
         e.preventDefault()
 
-        console.log(allGames)
         if(allGames.filter(n => n.name === input.name).length > 0){
             alert('Ya existe un videojuego con ese nombre.')
         } else {
@@ -88,22 +89,20 @@ const CreateGame = () => {
                 alert('Complete todos los campos correctamente')
             } else {
                 dispatch(createVideogame(input))
-                alert('El juego fue creado con éxito')
             }
         }
     }
-
-    console.log(input.image)
 
     //----------- VALIDAR ERRORES ----------------------
 
     const validate = (input) => {
         let errors = {};
         let RegExpression = /^[a-zA-Z0-9_¿?¡! .-]*$/
+        let RegExpressionImg = /https?:\/\/.*\.(?:png|jpg)/
     
         if(!input.name) {
             errors.name = 'Nombre requerido.'
-        } else if(!RegExpression.test(input.nombre)){
+        } else if(!RegExpression.test(input.name)){
             errors.name = 'Este nombre es inválido'
         } else if(input.name.length > 20){
             errors.name = 'El nombre solo puede tener un máximo de 20 caracteres'
@@ -122,46 +121,58 @@ const CreateGame = () => {
         if(input.platforms < 1){
             errors.platforms = 'Seleccione por lo menos una plataforma'
         }
-
-        if(!input.releaseDate){
-            errors.releaseDate = 'Seleccione la fecha de lanzamiento'
-        }
     
+        if( input.img && !RegExpressionImg.test(input.img)){
+            errors.img = 'Link invalido'
+        }
         return errors
     }
     
     // -------------- FORMULARIO -----------------
 
     return(
-        <div>
+        <div className={styles.container}>
+            <h1 className={styles.formTitle}>
+                <img src={formtitle} alt='CREA TU VIDEOJUEGO' />
+            </h1>
             <form onSubmit={e => handleSubmit(e)}>
-                <div>
+                <div className={styles.formSection}>
                     <label>Nombre: </label>
                     <input 
                         type="text" 
                         name='name' 
                         value={input.name} 
                         onChange={handleInputChange} 
+                        className={styles.input}
                     />
-                    { errors.name && (<p>{errors.name}</p>) }
+                    { errors.name && (<p className={styles.formErrors}>{errors.name}</p>) }
                 </div>
 
-                <div>
+                <div className={styles.formSection}>
                     <label>Imagen</label>
-                    <input type="file" value={input.image} name='image' onChange={handleInputChange} />
+                    <input 
+                        type="text" 
+                        value={input.img} 
+                        name='img' 
+                        onChange={handleInputChange} 
+                        className={styles.input}
+                    />
+                    {!errors.img && <img src={input.img} className={input.img && styles.formImage} />}
+                    { errors.img && <p className={styles.formErrors}>{errors.img}</p> }
                 </div>
 
-                <div>
+                <div className={styles.formSection}>
                     <label>Descripción: </label>
                     <textarea 
-                        name='description' 
-                        value={input.description} 
-                        onChange={handleInputChange} 
+                        name='description'
+                        value={input.description}
+                        onChange={handleInputChange}
+                        className={styles.input}
                     />
-                    { errors.description && <p>{errors.description}</p> }
+                    { errors.description && <p className={styles.formErrors}>{errors.description}</p> }
                 </div>
 
-                <div>
+                <div className={styles.formSection}>
                     <label>Fecha de Lanzamiento:</label>
                     <input 
                         type="date" 
@@ -169,14 +180,19 @@ const CreateGame = () => {
                         value={input.releaseDate} 
                         onChange={handleInputChange} 
                         placeholder='dd-mm-yyyy'
+                        className={styles.input}
                     />
-                    { errors.releaseDate && <p>{errors.releaseDate}</p> }
+                    { errors.releaseDate && <p className={styles.formErrors}>{errors.releaseDate}</p> }
                 </div>
 
-                <div>
+                <div className={styles.formSection}>
                     <label>Plataformas: </label>
-                    <select name='platforms' onChange={(selection) => handleSelect(selection)}>
-                        <option disabled selected>Seleccione los géneros</option>
+                    <select 
+                        name='platforms' 
+                        onChange={(selection) => handleSelect(selection)}
+                        className={styles.input}
+                    >
+                        <option disabled selected>Seleccione las plataformas</option>
                         {
                             platforms.map( p => (
                                 <option value={p}>
@@ -186,21 +202,26 @@ const CreateGame = () => {
                     </select>
                     { input.platforms.map(p => {
                         return (
-                            <div>
+                            <div >
                                 {p}
-                                <button type="button" onClick={() => removeItem(p)}>X</button>
+                                <button className={styles.removeButton} type="button" onClick={() => removeItem(p)}>X</button>
                             </div>)
                     }   )}
-                    { errors.platforms && <p>{errors.platforms}</p> }
+                    { errors.platforms && <p className={styles.formErrors}>{errors.platforms}</p> }
                 </div>
 
-                <div>
+                <div className={styles.formSection}>
                     <label>Géneros: </label>
-                    <select name="genres" onChange={(selection) => handleSelect(selection)}>
+                    <select 
+                        name="genres" 
+                        onChange={(selection) => handleSelect(selection)}
+                        className={styles.input}    
+                    >
                         <option disabled selected>Seleccione los géneros</option>
                         {
                             genres.map(g => (
-                                <option value={g.name} key={g.id}>
+                                <option value={g.name} key={g.id}
+                                    className={styles.tag}>
                                     {g.name}
                                 </option>
                             ))
@@ -210,14 +231,14 @@ const CreateGame = () => {
                         return(
                             <div>
                                 {g}
-                                <button type="button" onClick={() => removeItem(g)}>X</button>
+                                <button className={styles.removeButton} type="button" onClick={() => removeItem(g)}>X</button>
                             </div>
                         )
                     })}
-                    {errors.genres && <p>{errors.genres}</p>}
+                    {errors.genres && <p className={styles.formErrors}>{errors.genres}</p>}
                 </div>
 
-                <div>
+                <div className={styles.formSection}>
                     <label>Rating: </label>
                     <input 
                         type="number"
@@ -227,12 +248,13 @@ const CreateGame = () => {
                         name="rating"
                         value={input.rating}
                         onChange={handleInputChange}
+                        className={styles.input}
                     />
                 </div>
 
-                <div>
-                    <button type="submit">CREAR</button>
-                    <Link to='/home'><button>Volver</button></Link>
+                <div className={styles.formButtons}>
+                    <button type="submit" className={styles.submitBtn}>CREAR</button>
+                    <Link to='/home'><button className={styles.submitBtn}>Volver</button></Link>
                 </div>
             </form>
         </div>

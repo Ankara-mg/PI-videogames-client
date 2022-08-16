@@ -1,0 +1,14 @@
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto 1fr auto;
+    grid-column-gap: 11px;
+    grid-row-gap: 7px;
+}

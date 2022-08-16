@@ -12,6 +12,7 @@ export const FILTER_GAMES_ERROR = 'FILTER_GAMES_ERROR'
 export const RESET_ERRORS = 'RESET_ERRORS'
 export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
+export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
 const url = 'http://localhost:3001/videogames'
 
@@ -36,14 +37,17 @@ export const getAllVideogames = () => async (dispatch) => {
 export const getOneVideogame = (gameId) => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
-        const res = await axios.get(url + '/' + gameId)
+        const res = await axios.get(`http://localhost:3001/videogames/${gameId}`)
         dispatch({
             type: GET_GAME,
             payload: res.data
         })
         dispatch({type: TOGGLE_LOADING})
     } catch (error) {
-        console.log(error)
+        dispatch({type: TOGGLE_LOADING})
+        dispatch({
+            type: GET_VIDEOGAMES_ERROR,
+        })
     }
 }
 
@@ -55,6 +59,7 @@ export const createVideogame = (gameData) => async (dispatch) => {
             type: CREATE_VIDEOGAME,
             payload: res.data
         })
+        alert('Videojuego creado con éxito!')
     } catch (error) {
         console.log(error)
     }
@@ -82,7 +87,10 @@ export const searchGames = (gameName) => async (dispatch )=> {
         })
         dispatch({type: TOGGLE_LOADING})
     } catch (error) {
-        console.log(error)
+        dispatch({type: TOGGLE_LOADING})
+        dispatch({
+            type: FILTER_GAMES_ERROR,
+        })
     }
 }
 
@@ -91,7 +99,7 @@ export const filterVideogames = (allGames, genres) => dispatch => {
     const filtered = []
     
     for(let i = 0 ; i < allGames.length ; i++){
-        if(allGames[i].genres.filter(element => genres.includes(element)).length > 0){
+        if(allGames[i].genres.filter(element => genres.includes(element.name)).length > 0){
             filtered.push(allGames[i])
         }
     }
@@ -111,6 +119,10 @@ export const filterVideogames = (allGames, genres) => dispatch => {
 
 export const getFromDb = (allGames, type) => dispatch => {
     const filtered = []
+    
+    dispatch({
+        type: RESET_ERRORS,
+    })
 
     for(let i = 0 ; i < allGames.length ; i++){
         if(allGames[i].created && type === 'dbGames'){
@@ -118,16 +130,21 @@ export const getFromDb = (allGames, type) => dispatch => {
         } else if(!allGames[i].created && type === 'apiGames'){
             filtered.push(allGames[i])
         } else if (type === 'allGames'){
-            filtered.push(allGames[i])
+            dispatch({
+                type: GET_VIDEOGAMES_OK,
+                payload: allGames
+            })
         }
     }
 
+    console.log('FILTERED LENGTH', filtered.length)
+    console.log('ALL GAMES', allGames)
     if(filtered.length > 0){
         dispatch({
             type: FILTER_GAMES_OK,
             payload: filtered
         })
-    } else {
+    } else if(type !== 'allGames'){
         dispatch({
             type: FILTER_GAMES_ERROR,
             payload: 'No se encontraron videojuegos'
