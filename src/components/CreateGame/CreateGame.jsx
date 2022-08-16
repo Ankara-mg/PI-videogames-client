@@ -17,11 +17,11 @@ const CreateGame = () => {
     const allGames = useSelector(state => state.allVideogames)  
     
     const [input, setInput] = useState({
-        name: undefined,
-        description: undefined,
-        releaseDate: undefined,
-        rating: undefined,
-        img: undefined,
+        name: '',
+        description: '',
+        release: '',
+        rating: '',
+        img: '',
         platforms: [],
         genres: [],
         created: true,
@@ -176,13 +176,13 @@ const CreateGame = () => {
                     <label>Fecha de Lanzamiento:</label>
                     <input 
                         type="date" 
-                        name='releaseDate' 
-                        value={input.releaseDate} 
+                        name='release' 
+                        value={input.release} 
                         onChange={handleInputChange} 
                         placeholder='dd-mm-yyyy'
                         className={styles.input}
                     />
-                    { errors.releaseDate && <p className={styles.formErrors}>{errors.releaseDate}</p> }
+                    { errors.release && <p className={styles.formErrors}>{errors.release}</p> }
                 </div>
 
                 <div className={styles.formSection}>

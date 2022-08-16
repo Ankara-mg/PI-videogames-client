@@ -5,17 +5,12 @@ import styles from './Filters.module.css';
 
 const Filters = (props) => {
 
-    const { videogames } = props
-    const { genres } = useSelector(state => state)
+    const { videogames, genres } = props
     const dispatch = useDispatch()
 
     const [genSelection, setGenSelection] = useState([])
     const [dbSelection, setDbSelection] = useState('allGames')
     const [change, setChange] = useState(false)
-
-    useEffect(() => {
-        dispatch(getGenres())
-    }, []);
 
     const handleSelectGen = (filter) => {
         setGenSelection([...genSelection, filter.target.value])
