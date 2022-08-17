@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filterVideogames, getFromDb, getAllVideogames, getGenres, resetErrors } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { filterVideogames, getFromDb, resetErrors } from "../../redux/actions";
 import styles from './Filters.module.css';
 
 const Filters = (props) => {
@@ -24,7 +24,7 @@ const Filters = (props) => {
 
     useEffect(() => {
         if(change == true){
-            dispatch(filterVideogames(videogames, genSelection))
+            dispatch(filterVideogames(videogames, genSelection, dbSelection))
             if(genSelection.length == 0){
                 dispatch(getFromDb(videogames, dbSelection))
                 dispatch(resetErrors())

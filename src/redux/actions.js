@@ -61,6 +61,7 @@ export const createVideogame = (gameData) => async (dispatch) => {
         })
         alert('Videojuego creado con éxito!')
     } catch (error) {
+        alert('Error')
         console.log(error)
     }
 }
@@ -94,13 +95,22 @@ export const searchGames = (gameName) => async (dispatch )=> {
     }
 }
 
-export const filterVideogames = (allGames, genres) => dispatch => {
+export const filterVideogames = (allGames, genres, db) => dispatch => {
 
     const filtered = []
     
     for(let i = 0 ; i < allGames.length ; i++){
-        if(allGames[i].genres.filter(element => genres.includes(element.name)).length > 0){
-            filtered.push(allGames[i])
+
+        let comparar = allGames[i].genres.filter(element => genres.includes(element.name))
+
+        if(comparar.length > 0){
+            if(db === 'allGames'){
+                filtered.push(allGames[i])
+            } else if (db === 'dbGames' && allGames[i].created){
+                filtered.push(allGames[i])
+            } else if(db === 'apiGames' && !allGames[i].created) {
+                filtered.push(allGames[i])
+            }
         }
     }
     
@@ -137,8 +147,6 @@ export const getFromDb = (allGames, type) => dispatch => {
         }
     }
 
-    console.log('FILTERED LENGTH', filtered.length)
-    console.log('ALL GAMES', allGames)
     if(filtered.length > 0){
         dispatch({
             type: FILTER_GAMES_OK,
@@ -178,7 +186,6 @@ export const sortGames = (allGames, sortBy, type) => dispatch => {
         
               for(let i = 0 ; i < sortedGames.length; i++){
                 menorMayor = sortedGames[i]
-                console.log(menorMayor)
                 for(let j = i; j < sortedGames.length ; j++){
                     if(sortedGames[j].rating < menorMayor.rating){
                         menorMayor = sortedGames[j]

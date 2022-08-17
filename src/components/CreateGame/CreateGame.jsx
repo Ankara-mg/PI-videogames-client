@@ -125,6 +125,18 @@ const CreateGame = () => {
         if( input.img && !RegExpressionImg.test(input.img)){
             errors.img = 'Link invalido'
         }
+
+        console.log(input.rating)
+        console.log(input.rating.length)
+        console.log(input.rating > 5)
+        
+        if(input.rating.length > 0){
+            if(input.rating < 1 || input.rating > 5){
+                errors.rating = 'El rating debe tener un valor entre 1 y 5.'
+            }
+        }
+        console.log(errors.rating)
+
         return errors
     }
     
@@ -243,13 +255,12 @@ const CreateGame = () => {
                     <input 
                         type="number"
                         step="0.01"
-                        max='5' 
-                        min='1'
                         name="rating"
                         value={input.rating}
                         onChange={handleInputChange}
                         className={styles.input}
                     />
+                    {errors.rating && <p className={styles.formErrors}>{errors.rating}</p>}
                 </div>
 
                 <div className={styles.formButtons}>
