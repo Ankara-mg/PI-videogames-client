@@ -89,6 +89,16 @@ const CreateGame = () => {
                 alert('Complete todos los campos correctamente')
             } else {
                 dispatch(createVideogame(input))
+                setInput({
+                    name: '',
+                    description: '',
+                    release: '',
+                    rating: '',
+                    img: '',
+                    platforms: [],
+                    genres: [],
+                    created: true,
+                })
             }
         }
     }
@@ -126,16 +136,12 @@ const CreateGame = () => {
             errors.img = 'Link invalido'
         }
 
-        console.log(input.rating)
-        console.log(input.rating.length)
-        console.log(input.rating > 5)
         
         if(input.rating.length > 0){
             if(input.rating < 1 || input.rating > 5){
                 errors.rating = 'El rating debe tener un valor entre 1 y 5.'
             }
         }
-        console.log(errors.rating)
 
         return errors
     }
@@ -207,16 +213,19 @@ const CreateGame = () => {
                         <option disabled selected>Seleccione las plataformas</option>
                         {
                             platforms.map( p => (
-                                <option value={p}>
+                                <option value={p} key={p}>
                                     {p}
                                 </option>
                             ))}
                     </select>
                     { input.platforms.map(p => {
                         return (
-                            <div >
+                            <div key={p} >
                                 {p}
-                                <button className={styles.removeButton} type="button" onClick={() => removeItem(p)}>X</button>
+                                <button 
+                                    className={styles.removeButton} 
+                                    type="button" onClick={() => removeItem(p)
+                                    }>X</button>
                             </div>)
                     }   )}
                     { errors.platforms && <p className={styles.formErrors}>{errors.platforms}</p> }
@@ -241,7 +250,7 @@ const CreateGame = () => {
                     </select>
                     {input.genres.map(g => {
                         return(
-                            <div>
+                            <div key={g}> {/* IMPORTANTE LA KEY */}
                                 {g}
                                 <button className={styles.removeButton} type="button" onClick={() => removeItem(g)}>X</button>
                             </div>

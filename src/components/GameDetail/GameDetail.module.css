@@ -9,9 +9,10 @@
 }
 
 .image {
-    width: 500px;
+    width: 600px;
+    height: auto;
     border: 1px solid black;
-    border-radius: 15%;
+    border-radius: 2%;
     height: auto;
 }
 
@@ -22,20 +23,27 @@
     text-align: center;
     color: white;
     background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(3px);
 }
 
 .gameTitle{
     text-transform: uppercase;
-    font-size: 50px;
+    font-size: 70px;
+    letter-spacing: 30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #c4b4f9;
+    text-shadow: 3px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+             1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .genresContainer {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    margin-top: -30px;
+    font-size: 26px;
 }
 
 .genres {
@@ -47,11 +55,12 @@
 }
 
 .descContainer {
-    width: 500px;
+    width: 600px;
     text-align: justify;
     height: 400px;
     overflow: scroll;
     border: 1px solid black;
+    font-size: 20px;
     padding: 0px 25px;
     margin: 10px 0px;
 }
@@ -73,8 +82,11 @@
 .platContainer {
     display: flex;
     flex-wrap: wrap;
-    width: 540px;
+    width: 800px;
     margin-bottom: 30px;
+    justify-content: center;
+    margin-left: 50px;
+    font-size: 22px;
 }
 
 .platform {
@@ -96,13 +108,36 @@
     color: white;
     border: 1px solid #1a2540;
     border-radius: 5px;
-    padding: 8px 15px;
+    padding: 10px 50px;
     margin: 0px 0px 30px 0px;
-    font-size: large;
+    font-size: 30px;
+    font-weight: bold;
 }
 
 .detailBtn:hover {
     background-color: #1a2540;
     border: 1px solid #445089;
     cursor: pointer;
+}
+
+.detailCenter{
+    display: flex;
+    flex-direction: row;
+}
+
+.detailLeft{
+    padding-right: 100px;
+    padding-top: 55px;
+}
+
+.detailBottom{
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 900px;
+}
+
+.detailRight{
+    font-size: 20px;
+    margin-top: 45px;
 }

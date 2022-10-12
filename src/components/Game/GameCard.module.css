@@ -1,6 +1,6 @@
 .cardContainer {
     width: 300px;
-    height: 280px;
+    height: 310px;
     border-radius: 5px;
     border: 2px solid #7b7dda;
     margin: 10px;
@@ -12,7 +12,8 @@
     text-align: center;
 
     color: white;
-    backdrop-filter: blur(5px);
+/*     background-image: url('../../img/cards.png') blur(20%); */
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../img/cards.png');
 }
 
 .cardContainer:hover {
@@ -21,6 +22,7 @@
     box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
     top: -4px;
     border: 1px solid #cccccc;
+    box-shadow: lightblue 10px 10px 10px;
 }
 
 a:link { text-decoration: none; }
@@ -32,10 +34,10 @@ a:hover { text-decoration: none; }
 a:active { text-decoration: none; }
 
 .gameImg {
-    width: 260px;
-    height: 150px;
-    border: 1px solid #7b7dda;
-    border-radius: 50px;
+    width: 310px;
+    height: 160px;
+    -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
 }
 
 .genresContainer, .genre {
@@ -51,28 +53,34 @@ a:active { text-decoration: none; }
     justify-content: center;
     flex-direction: column;
     text-align: center;
+    font-size: 16px;
 }
 .genre {
     background-color: #445089;
     padding: 0px 10px;
     border-radius: 6px;
+    color: white;
 }
 
 .rating {
-    font-size: 12px;
+    font-size: 16px;
+    bottom: -20%;
 }
 
 .titleContain {
     height: 50px;
     line-height: 40px;
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .title {
     text-transform: uppercase;
-    text-decoration: dotted underline;
+    text-decoration: none;
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
+    font-size: 21px;
+    font-weight: bold;
 }
   

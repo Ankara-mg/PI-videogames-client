@@ -25,39 +25,49 @@ const GameDetail = (props) => {
                 loading ?
                 <Loading /> :
                 <div className={styles.dataContainer}>
-
-                        <div className={styles.gameTitle}>{videogame.name}</div>
-                        <img src={videogame.img} alt={videogame.name} className={styles.image} />
-                        <br/>GENRES <br/>
-                        <div className={styles.genresContainer}>
-                            { Array.isArray(videogame.genres) &&
-                                videogame.genres.map(g => {
-                                    return(
-                                        <div className={styles.genres}>{g.name}</div>
-                                    )
-                                })
-                            }
-                        </div>
-
-                        <div className={styles.descContainer}>
-                            <div dangerouslySetInnerHTML={{__html: videogame.description}} />
-                        </div>
-
-                        <div>Release Date: {videogame.release}</div>
-                        <div>Rating - {videogame.rating} ⭐ </div>
-                        <div><br/>Platforms:
-                        <div className={styles.platContainer}>
-                                {
-                                    Array.isArray(videogame.platforms) &&
-                                    videogame.platforms.map(p => (
-                                        <p className={styles.platform}>{p}</p>
-                                    ))
+                        <div className={styles.titleContainer}>
+                            <div className={styles.gameTitle}>{videogame.name}</div>
+                            
+                            <div className={styles.genresContainer}>
+                                { Array.isArray(videogame.genres) &&
+                                    videogame.genres.map(g => {
+                                        return(
+                                            <div className={styles.genres}>{g.name}</div>
+                                        )
+                                    })
                                 }
                             </div>
                         </div>
-                        <Link to='/home'><button className={styles.detailBtn}>HOME</button></Link>
+
+                        <div className={styles.detailCenter}>
+                            <div className={styles.detailLeft}>
+                                <img src={videogame.img} alt={videogame.name} className={styles.image} />
+                            </div>
+
+                            <div className={styles.detailRight}>
+                                <div className={styles.descContainer}>
+                                    <div dangerouslySetInnerHTML={{__html: videogame.description}} />
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                        <div className={styles.detailBottom}>
+                            <div>Release Date: {videogame.release}</div>
+                            <div>Rating - {videogame.rating} ⭐ </div>
+                            <div><br/>Platforms:
+                            <div className={styles.platContainer}>
+                                    {
+                                        Array.isArray(videogame.platforms) &&
+                                        videogame.platforms.map(p => (
+                                            <p className={styles.platform}>{p}</p>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                            <Link to='/home'><button className={styles.detailBtn}>HOME</button></Link>
+                        </div>
                     </div>
-                    
             }
         </div>
     )

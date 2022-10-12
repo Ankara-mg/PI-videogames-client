@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.559);
+    backdrop-filter: blur(20%);
 }
 
 .cardsGrid {
@@ -11,4 +13,9 @@
     grid-template-rows: auto auto 1fr auto;
     grid-column-gap: 11px;
     grid-row-gap: 7px;
+}
+
+.errors{
+    padding: 35px;
+    padding-bottom: 15%;
 }

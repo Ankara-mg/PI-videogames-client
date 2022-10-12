@@ -14,12 +14,12 @@ export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
-const url = 'http://localhost:3001/videogames'
+const url = 'http://localhost:3001/'
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
-        const res = await axios.get(url)
+        const res = await axios.get(url + 'videogames')
         dispatch({
             type: GET_VIDEOGAMES_OK,
             payload: res.data
@@ -37,7 +37,7 @@ export const getAllVideogames = () => async (dispatch) => {
 export const getOneVideogame = (gameId) => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
-        const res = await axios.get(`http://localhost:3001/videogames/${gameId}`)
+        const res = await axios.get(`${url}videogames/${gameId}`)
         dispatch({
             type: GET_GAME,
             payload: res.data
@@ -54,7 +54,7 @@ export const getOneVideogame = (gameId) => async (dispatch) => {
 export const createVideogame = (gameData) => async (dispatch) => {
 
     try {
-        const res = await axios.post('http://localhost:3001/videogame/create', gameData)
+        const res = await axios.post(url + 'videogame/create', gameData)
         dispatch({
             type: CREATE_VIDEOGAME,
             payload: res.data
@@ -68,7 +68,7 @@ export const createVideogame = (gameData) => async (dispatch) => {
 
 export const getGenres = () => async (dispatch) => {
     try {
-        const res = await axios.get('http://localhost:3001/genres')
+        const res = await axios.get(url + 'genres')
         dispatch({
             type: GET_GENRES,
             payload: res.data

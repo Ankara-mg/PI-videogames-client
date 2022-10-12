@@ -7,12 +7,12 @@ const GameCard = (props) => {
 
     return(
         <div className={styles.cardContainer}>
-            <div className={styles.titleContain}>
-                <div className={styles.title}>{videogames.name}</div>
-            </div>
-
             <div className={styles.cardImgContainer}>
                <img src={videogames.img} alt={videogames.name} className={styles.gameImg} />
+            </div>
+
+            <div className={styles.titleContain}>
+                <div className={styles.title}>{videogames.name}</div>
             </div>
 
             <div className={styles.genresContainer}>

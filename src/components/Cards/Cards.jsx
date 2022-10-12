@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from './Cards.module.css';
+import noGames from '../../img/no-juegos-2.png'
 
 import GameCard from "../Game/GameCard";
 
@@ -10,18 +11,27 @@ const Cards = (props) => {
 
     return (
         <div className={styles.cardsContainer}>
-            <div className={styles.cardsGrid}>
-                {
-                    errors ? 
-                    <div>{errors}</div>
+            {
+                errors ? 
+                <div className={styles.errors}>
+                    <div>
+                        <div>
+                            <img src={noGames} alt={errors}/>
+                        </div>
+                    </div>
+                </div>
                     :
-                    videogames.map((game, key) => 
-                    <Link to={`/videogames/${game.id}`}>
-                        <GameCard videogames={game} key={key} />
-                    </Link>
-                    )
-                }
-            </div>
+                <div className={styles.cardsGrid}>
+                    {
+                        videogames.map((game, key) => 
+                        <Link to={`/videogames/${game.id}`} key={key}>
+                            <GameCard videogames={game} />
+                        </Link>
+                        )
+                    }
+                
+                </div>
+            }
         </div>
     )
 

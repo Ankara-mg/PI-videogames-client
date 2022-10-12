@@ -28,7 +28,7 @@ const Home = () => {
     
     useEffect(() => {
         setGames(filterGames)
-        setCurrentPage(1)
+        return setCurrentPage(1) //desmontar
     }, [filterGames])
 
     console.log('filtergames',filterGames)
