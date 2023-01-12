@@ -14,7 +14,7 @@ export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
-const url = 'http://localhost:3001/'
+const url = process.env.URL
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
