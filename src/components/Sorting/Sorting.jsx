@@ -27,7 +27,6 @@ const Sorting = (props) => {
             dispatch(sortGames(games, ordenarPor, tipoOrden))
         }
 
-        console.log(ordenarPor, tipoOrden)
         if(ordenarPor === 'rating' || ordenarPor === 'name') 
             setDisabled(false)
         else

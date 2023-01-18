@@ -13,8 +13,6 @@ const GameDetail = (props) => {
     const dispatch = useDispatch();
     const { loading } = useSelector(state => state)
     
-    console.log(videogame)
-    
     useEffect(() => {
         dispatch(getOneVideogame(props.match.params.id))
     }, [])

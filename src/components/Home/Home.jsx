@@ -31,9 +31,6 @@ const Home = () => {
         return setCurrentPage(1) //desmontar
     }, [filterGames])
 
-    console.log('filtergames',filterGames)
-    console.log('videogames', allVideogames)
-
     // --------------- PAGINATION ---------------------
 
     const [currentPage, setCurrentPage] = useState(1)

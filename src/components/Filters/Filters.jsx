@@ -44,8 +44,6 @@ const Filters = (props) => {
         )
     }
 
-    console.log(dbSelection)
-
     return(
         <div className={styles.container}>
 
