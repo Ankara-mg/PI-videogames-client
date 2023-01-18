@@ -12,7 +12,8 @@
 .createBtn{
     position: fixed;
     bottom: 45px;
-    right: 50px;
+    right: 50px; 
+    z-index: 10;
     border-radius: 100%;
     padding: 33px 10px;
 
