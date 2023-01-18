@@ -23,13 +23,14 @@ const Cards = (props) => {
                     :
                 <div className={styles.cardsGrid}>
                     {
-                        videogames.length > 0 ? (
+                        /* videogames.length > 0 ? (
                             videogames?.map((game, key) => 
                             <Link to={`/videogames/${game.id}`} key={key}>
                                 <GameCard videogames={game} />
                             </Link>
                             )
-                        ) : null
+                        ) : null */
+                        null
                     }
                 
                 </div>
