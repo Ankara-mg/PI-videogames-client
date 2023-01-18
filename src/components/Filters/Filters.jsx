@@ -61,23 +61,27 @@ const Filters = (props) => {
                 <select name="filter" onChange={(sel) => handleSelectGen(sel)} className={styles.select} >
                     <option disabled selected>Géneros</option>
                     {
-                        genres?.map(g => {
-                            return <option value={g.name} key={g.id}>{g.name}</option>
-                        })
+                        genres.length > 0 ? (
+                            genres.map(g => {
+                                return <option value={g.name} key={g.id}>{g.name}</option>
+                            })
+                        ) : null
                     }
                 </select>
             </div>
 
             <div className={styles.genresContainer}>
                 {
-                    genSelection?.map(g => {
-                        return(
-                            <div className={styles.genreTag}>
-                                {g}
-                                <button type="button" onClick={() => removeItem(g)} className={styles.genButton} >X</button>
-                            </div>
-                        )
-                    })
+                    genSelection.length > 0 ? (
+                        genSelection.map(g => {
+                            return(
+                                <div className={styles.genreTag}>
+                                    {g}
+                                    <button type="button" onClick={() => removeItem(g)} className={styles.genButton} >X</button>
+                                </div>
+                            )
+                        })
+                    ) : null
                 }
             </div>
         </div>
