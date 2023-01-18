@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.36d8386a.chunk.css",
-    "main.js": "/static/js/main.c84ebf74.chunk.js",
-    "main.js.map": "/static/js/main.c84ebf74.chunk.js.map",
+    "main.js": "/static/js/main.ad12e9eb.chunk.js",
+    "main.js.map": "/static/js/main.ad12e9eb.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fdde3533.js",
     "runtime-main.js.map": "/static/js/runtime-main.fdde3533.js.map",
-    "static/js/2.bee4093d.chunk.js": "/static/js/2.bee4093d.chunk.js",
-    "static/js/2.bee4093d.chunk.js.map": "/static/js/2.bee4093d.chunk.js.map",
+    "static/js/2.a1d367a6.chunk.js": "/static/js/2.a1d367a6.chunk.js",
+    "static/js/2.a1d367a6.chunk.js.map": "/static/js/2.a1d367a6.chunk.js.map",
     "static/js/3.3ac5daa8.chunk.js": "/static/js/3.3ac5daa8.chunk.js",
     "static/js/3.3ac5daa8.chunk.js.map": "/static/js/3.3ac5daa8.chunk.js.map",
     "index.html": "/index.html",
     "static/css/main.36d8386a.chunk.css.map": "/static/css/main.36d8386a.chunk.css.map",
-    "static/js/2.bee4093d.chunk.js.LICENSE.txt": "/static/js/2.bee4093d.chunk.js.LICENSE.txt",
+    "static/js/2.a1d367a6.chunk.js.LICENSE.txt": "/static/js/2.a1d367a6.chunk.js.LICENSE.txt",
     "static/media/GameCard.module.css": "/static/media/cards.8b3bba72.png",
     "static/media/GameDetail.module.css": "/static/media/details-bg.b515211c.jpg",
     "static/media/CreateGame.module.css": "/static/media/home-bg-5.a7e28763.jpg",
@@ -21,8 +21,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.fdde3533.js",
-    "static/js/2.bee4093d.chunk.js",
+    "static/js/2.a1d367a6.chunk.js",
     "static/css/main.36d8386a.chunk.css",
-    "static/js/main.c84ebf74.chunk.js"
+    "static/js/main.ad12e9eb.chunk.js"
   ]
 }
