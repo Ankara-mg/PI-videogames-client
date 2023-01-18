@@ -1,4 +1,6 @@
 import axios from 'axios'
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const TOGGLE_LOADING = 'TOGGLE_LOADING'
 export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME'
