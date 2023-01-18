@@ -16,8 +16,7 @@ export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
-const url = process.env.BACK_URL + '/'
-console.log(process.env)
+const url = 'https://pi-videogames-production-396e.up.railway.app/'
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
