@@ -10,13 +10,7 @@
 }
 
 .createBtn{
-    position: fixed;
-    bottom: 45px;
-    right: 50px; 
-    z-index: 10;
-    border-radius: 100%;
-    padding: 33px 10px;
-    opacity: 100%;
+
 
     background-color: #0c727c;
     border: 1px solid white;
