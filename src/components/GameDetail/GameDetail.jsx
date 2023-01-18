@@ -30,7 +30,7 @@ const GameDetail = (props) => {
                             
                             <div className={styles.genresContainer}>
                                 { Array.isArray(videogame.genres) &&
-                                    videogame.genres.map(g => {
+                                    videogame.genres?.map(g => {
                                         return(
                                             <div className={styles.genres}>{g.name}</div>
                                         )
@@ -59,7 +59,7 @@ const GameDetail = (props) => {
                             <div className={styles.platContainer}>
                                     {
                                         Array.isArray(videogame.platforms) &&
-                                        videogame.platforms.map(p => (
+                                        videogame.platforms?.map(p => (
                                             <p className={styles.platform}>{p}</p>
                                         ))
                                     }

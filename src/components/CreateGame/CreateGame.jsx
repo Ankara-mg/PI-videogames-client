@@ -212,13 +212,13 @@ const CreateGame = () => {
                     >
                         <option disabled selected>Seleccione las plataformas</option>
                         {
-                            platforms.map( p => (
+                            platforms?.map( p => (
                                 <option value={p} key={p}>
                                     {p}
                                 </option>
                             ))}
                     </select>
-                    { input.platforms.map(p => {
+                    { input.platforms?.map(p => {
                         return (
                             <div key={p} >
                                 {p}
@@ -240,7 +240,7 @@ const CreateGame = () => {
                     >
                         <option disabled selected>Seleccione los géneros</option>
                         {
-                            genres.map(g => (
+                            genres?.map(g => (
                                 <option value={g.name} key={g.id}
                                     className={styles.tag}>
                                     {g.name}
@@ -248,7 +248,7 @@ const CreateGame = () => {
                             ))
                         }
                     </select>
-                    {input.genres.map(g => {
+                    {input.genres?.map(g => {
                         return(
                             <div key={g}> {/* IMPORTANTE LA KEY */}
                                 {g}

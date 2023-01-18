@@ -11,7 +11,7 @@ const Pagination = ( {cambiarPage, cardsPerPage, totalCards} ) => {
 
     return(
         <div className={styles.container}>
-            {pageNumbers.map(num => (
+            {pageNumbers?.map(num => (
                 <li key={num}>
                     <button className={styles.pageButtons} onClick={() => cambiarPage(num)}>{num}</button>
                 </li>

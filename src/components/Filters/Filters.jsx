@@ -61,7 +61,7 @@ const Filters = (props) => {
                 <select name="filter" onChange={(sel) => handleSelectGen(sel)} className={styles.select} >
                     <option disabled selected>Géneros</option>
                     {
-                        genres.map(g => {
+                        genres?.map(g => {
                             return <option value={g.name} key={g.id}>{g.name}</option>
                         })
                     }
@@ -70,7 +70,7 @@ const Filters = (props) => {
 
             <div className={styles.genresContainer}>
                 {
-                    genSelection.map(g => {
+                    genSelection?.map(g => {
                         return(
                             <div className={styles.genreTag}>
                                 {g}

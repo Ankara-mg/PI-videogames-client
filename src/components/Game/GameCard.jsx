@@ -16,7 +16,7 @@ const GameCard = (props) => {
             </div>
 
             <div className={styles.genresContainer}>
-                <div>{videogames.genres.map(g => {
+                <div>{videogames.genres?.map(g => {
                     return <div className={styles.genre}>{g.name}</div>
                 })}</div>
             </div>
