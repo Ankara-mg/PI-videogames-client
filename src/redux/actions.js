@@ -20,6 +20,7 @@ export const getAllVideogames = () => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
         const res = await axios.get(url + 'videogames')
+        console.log(res, url + 'videogames')
         dispatch({
             type: GET_VIDEOGAMES_OK,
             payload: res.data
