@@ -17,12 +17,12 @@ export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
 const url = process.env.BACK_URL + '/'
+console.log(process.env)
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
         const res = await axios.get(url + 'videogames')
-        console.log(res, url + 'videogames')
         dispatch({
             type: GET_VIDEOGAMES_OK,
             payload: res.data
