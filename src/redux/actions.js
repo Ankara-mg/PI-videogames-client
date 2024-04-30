@@ -22,7 +22,7 @@ const url = 'https://videogames-back-4zi8.onrender.com'
 export const getAllVideogames = () => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
-        const res = await axios.get(url + 'videogames')
+        const res = await axios.get(url + '/videogames')
         dispatch({
             type: GET_VIDEOGAMES_OK,
             payload: res.data
@@ -40,7 +40,7 @@ export const getAllVideogames = () => async (dispatch) => {
 export const getOneVideogame = (gameId) => async (dispatch) => {
     try {
         dispatch({type: TOGGLE_LOADING})
-        const res = await axios.get(`${url}videogames/${gameId}`)
+        const res = await axios.get(`${url}/videogames/${gameId}`)
         dispatch({
             type: GET_GAME,
             payload: res.data
@@ -57,7 +57,7 @@ export const getOneVideogame = (gameId) => async (dispatch) => {
 export const createVideogame = (gameData) => async (dispatch) => {
 
     try {
-        const res = await axios.post(url + 'videogame/create', gameData)
+        const res = await axios.post(url + '/videogame/create', gameData)
         dispatch({
             type: CREATE_VIDEOGAME,
             payload: res.data
@@ -71,7 +71,7 @@ export const createVideogame = (gameData) => async (dispatch) => {
 
 export const getGenres = () => async (dispatch) => {
     try {
-        const res = await axios.get(url + 'genres')
+        const res = await axios.get(url + '/genres')
         dispatch({
             type: GET_GENRES,
             payload: res.data
