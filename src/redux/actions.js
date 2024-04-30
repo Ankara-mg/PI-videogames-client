@@ -84,7 +84,7 @@ export const getGenres = () => async (dispatch) => {
 export const searchGames = (gameName) => async (dispatch )=> {
     try {
         dispatch({type: TOGGLE_LOADING})
-        const res = await axios.get(url + `?name=${gameName}`)
+        const res = await axios.get(url + `/videogames?name=${gameName}`)
         dispatch({
             type: SEARCH_GAME,
             payload: res.data
