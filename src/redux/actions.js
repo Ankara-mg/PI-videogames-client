@@ -16,7 +16,6 @@ export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
-console.log(process.env)
 const { BACK_URL } = process.env
 const url = 'https://videogames-back-4zi8.onrender.com'
 
