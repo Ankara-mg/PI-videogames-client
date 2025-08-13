@@ -1,6 +1,4 @@
 import axios from 'axios'
-import dotenv from 'dotenv'
-dotenv.config()
 
 export const TOGGLE_LOADING = 'TOGGLE_LOADING'
 export const CREATE_VIDEOGAME = 'CREATE_VIDEOGAME'
@@ -16,8 +14,8 @@ export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
-const { BACK_URL } = process.env
-const url = 'https://videogames-back-4zi8.onrender.com'
+const { REACT_APP_BACK_URL } = process.env
+const url = REACT_APP_BACK_URL;
 
 export const getAllVideogames = () => async (dispatch) => {
     try {
