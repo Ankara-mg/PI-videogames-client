@@ -1,4 +1,4 @@
-import { Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 //Components
@@ -9,12 +9,12 @@ import CreateGame from './components/CreateGame/CreateGame.jsx';
 
 function App() {
   return (
-    <div>
-      <Route exact path='/videogame/create' component={CreateGame} />
-      <Route exact path='/' component={Landing} />
-      <Route exact path='/home' component={Home} />
-      <Route exact path='/videogames/:id' component={GameDetail} />
-    </div>
+    <Routes>
+      <Route path='/videogame/create' element={<CreateGame />} />
+      <Route path='/' element={<Landing />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/videogames/:id' element={<GameDetail />} />
+    </Routes>
   );
 }
 

@@ -1,15 +1,12 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import { configureStore } from '@reduxjs/toolkit';
 import { videogameReducer } from './reducer';
 
-/* const rootReducer = combineReducers({
-    videogames: videogameReducer
-}) */
-
-const store = createStore(
-    videogameReducer,
-    composeWithDevTools(applyMiddleware(thunk))
-)
+const store = configureStore({
+    reducer: {
+        videogames: videogameReducer,
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
+    devTools: true,
+})
 
 export default store

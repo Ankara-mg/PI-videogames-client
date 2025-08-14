@@ -14,8 +14,7 @@ export const SORT_GAMES = 'SORT_GAMES'
 export const SORT_GAMES_DEFAULT = 'SORT_GAMES_DEFAULT'
 export const FILTER_GAMES_RESET = 'FILTER_GAMES_RESET'
 
-const { REACT_APP_BACK_URL } = process.env
-const url = REACT_APP_BACK_URL;
+const url  = import.meta.env.VITE_API_URL;
 
 export const getAllVideogames = () => async (dispatch) => {
     try {

@@ -27,7 +27,9 @@ const Home = () => {
  
     
     useEffect(() => {
-        setGames(filterGames)
+        if(filterGames) {
+            setGames(filterGames)
+        }
         return setCurrentPage(1) //desmontar
     }, [filterGames])
 
@@ -51,12 +53,19 @@ const Home = () => {
                     loading ? 
                     <Loading /> :
                     <div>
-                        <SearchBar />
-                        <Link to='/videogame/create'> <button className={style.createBtn} >CREAR</button> </Link>
-                        <Sorting games={filterGames} />
-                        <Filters videogames={allVideogames} genres={genres}/>
-                        <Pagination cardsPerPage={cardsPerPage} totalCards={!errors && filterGames.length} cambiarPage={cambiarPage} />
-                        <Cards videogames={currentCards} errors={errors} />
+                        {
+                            filterGames ? 
+                            <>
+                            <SearchBar />
+                            <Link to='/videogame/create'> <button className={style.createBtn} >CREAR</button> </Link>
+                            <Sorting games={filterGames} />
+                            <Filters videogames={allVideogames} genres={genres}/>
+                            <Pagination cardsPerPage={cardsPerPage} totalCards={!errors && filterGames.length} cambiarPage={cambiarPage} />
+                            <Cards videogames={currentCards} errors={errors} />
+                            </>
+                            :
+                            <></>
+                        }
                     </div>
                 }
             </div>
