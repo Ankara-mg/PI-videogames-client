@@ -16,7 +16,7 @@ const Home = () => {
 
     const dispatch = useDispatch();
 
-    const { allVideogames, filterGames, errors, genres } = useSelector(state => state)
+    const { allVideogames, filterGames, errors, genres } = useSelector(state => state.videogames);
     const [games, setGames] = useState([]);
     const { loading } = useSelector(state => state)
     
@@ -27,9 +27,7 @@ const Home = () => {
  
     
     useEffect(() => {
-        if(filterGames) {
-            setGames(filterGames)
-        }
+        setGames(filterGames)
         return setCurrentPage(1) //desmontar
     }, [filterGames])
 
@@ -54,7 +52,7 @@ const Home = () => {
                     <Loading /> :
                     <div>
                         {
-                            filterGames ? 
+                            (filterGames && filterGames.length > 0) ? 
                             <>
                             <SearchBar />
                             <Link to='/videogame/create'> <button className={style.createBtn} >CREAR</button> </Link>
@@ -64,7 +62,7 @@ const Home = () => {
                             <Cards videogames={currentCards} errors={errors} />
                             </>
                             :
-                            <></>
+                            <Loading />
                         }
                     </div>
                 }
