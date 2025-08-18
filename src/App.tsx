@@ -3,9 +3,9 @@ import './App.css';
 
 //Components
 import Landing from '@components/Landing/Landing';
-import Home from '@components/Home/Home.jsx';
-import GameDetail from '@components/GameDetail/GameDetail.jsx';
-import CreateGame from '@components/CreateGame/CreateGame.jsx';
+import Home from '@components/Home/Home';
+import GameDetail from '@components/GameDetail/GameDetail';
+import CreateGame from '@components/CreateGame/CreateGame';
 
 function App() {
   return (

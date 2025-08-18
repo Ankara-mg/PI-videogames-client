@@ -2,23 +2,24 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getAllVideogames, getGenres } from '@redux/actions';
 import style from './Home.module.css';
+import { getAllVideogames, getGenres } from '@redux/actions';
+import type { AppDispatch, RootState } from '@redux/store';
+import type { GameType } from 'src/types';
 
 //Components
-import Loading from '@components/Loading/Loading.jsx';
-import Cards from '@components/Cards/Cards.jsx';
-import SearchBar from '@components/SearchBar/SearchBar.jsx';
-import Filters from '@components/Filters/Filters.jsx';
-import Sorting from '@components/Sorting/Sorting.jsx';
-import Pagination from '@components/Pagination/Pagination.jsx';
+import Loading from '@components/Loading/Loading';
+import Cards from '@components/Cards/Cards';
+import SearchBar from '@components/SearchBar/SearchBar';
+import Filters from '@components/Filters/Filters';
+import Sorting from '@components/Sorting/Sorting';
+import Pagination from '@components/Pagination/Pagination';
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const { allVideogames, filterGames, errors, genres } = useSelector(state => state.videogames);
-  const [games, setGames] = useState([]);
-  const { loading } = useSelector(state => state)
+  const { allVideogames, filterGames, errors, genres, loading } = useSelector((state: RootState) => state.videogames);
+  const [games, setGames] = useState<GameType[]>([]);
 
   useEffect(() => {
     dispatch(getAllVideogames())
@@ -32,14 +33,14 @@ const Home = () => {
 
   // --------------- PAGINATION ---------------------
 
-  const [currentPage, setCurrentPage] = useState(1)
-  const [cardsPerPage, setCardsPerPage] = useState(15)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [cardsPerPage, setCardsPerPage] = useState<number>(15)
 
-  const indiceUltimaCard = currentPage * cardsPerPage
-  const indicePrimerCard = indiceUltimaCard - cardsPerPage
-  const currentCards = games.slice(indicePrimerCard, indiceUltimaCard)
+  const indiceUltimaCard: number = currentPage * cardsPerPage
+  const indicePrimerCard: number = indiceUltimaCard - cardsPerPage
+  const currentCards: GameType[] = games.slice(indicePrimerCard, indiceUltimaCard)
 
-  const cambiarPage = (pageNum) => {
+  const cambiarPage = (pageNum: number) => {
     setCurrentPage(pageNum)
   }
 

@@ -101,7 +101,14 @@ export const filterVideogames = (allGames: GameType[], genres: string[], db: str
   const filtered = []
 
   for (const game of allGames) {
-    let comparar = game.genres.filter((genre: Genre) => genres.includes(genre.name));
+    // let comparar = game.genres.filter((genre: Genre) => genres.includes(genre.name));
+    let comparar = game.genres.filter((genre: Genre | string) => {
+      if (typeof genre === 'string') {
+        return genres.includes(genre);
+      } else {
+        return genres.includes(genre.name);
+      }
+    });
 
     if (comparar.length > 0) {
       if (db === 'allGames') {

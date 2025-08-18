@@ -1,20 +1,20 @@
 
 type BaseGame = {
-  id: string | number;
+  id?: string | number;
   img: string;
   name: string;
   rating: number;
-  genres: Genre[];
   created?: boolean;
 };
 
-export type ApiGame = BaseGame & { id: number };
+export type ApiGame = BaseGame & { id: number; genres: Genre[]; };
 
 export type DbGame = BaseGame & {
-  id: string;
+  id?: string;
   description: string;
   platforms: string[];
   release: string;
+  genres: string[];
   created: true;
 };
 
@@ -24,6 +24,16 @@ export type Genre = {
   id?: number;
   image_background?: string;
   slug?: string;
+}
+
+export type FormErrors = {
+  name: string;
+  description: string;
+  genres: string;
+  platforms: string;
+  img: string;
+  rating: string;
+  release: string;
 }
 
 export type GameType = ApiGame | DbGame;
