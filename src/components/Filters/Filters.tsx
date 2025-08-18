@@ -51,7 +51,7 @@ const Filters = (props: { videogames: GameType[], genres: Genre[] }) => {
 
       <div className={styles.selectContainer}>
         <select name="db" onChange={handleSelect} className={styles.select}>
-          <option disabled selected>Filtrar por ...</option>
+          <option disabled defaultValue='none'>Filtrar por ...</option>
           <option value='dbGames'>Juegos creados</option>
           <option value='apiGames'>Juegos de la API</option>
           <option value='allGames'>Todos los juegos</option>
@@ -59,25 +59,23 @@ const Filters = (props: { videogames: GameType[], genres: Genre[] }) => {
 
 
         <select name="filter" onChange={handleSelectGen} className={styles.select} >
-          <option disabled selected>Géneros</option>
+          <option disabled defaultValue='none'>Géneros</option>
           {
-            genres.map(g => {
-              return <option value={g.name} key={g.id}>{g.name}</option>
-            })
+            genres.map(g => (
+              <option value={g.name} key={g.id}>{g.name}</option>
+            ))
           }
         </select>
       </div>
 
       <div className={styles.genresContainer}>
         {
-          genSelection.map(g => {
-            return (
-              <div className={styles.genreTag}>
-                {g}
-                <button type="button" onClick={() => removeItem(g)} className={styles.genButton} >X</button>
-              </div>
-            )
-          })
+          genSelection.map(g => (
+            <div className={styles.genreTag} key={g}>
+              {g}
+              <button type="button" onClick={() => removeItem(g)} className={styles.genButton} >X</button>
+            </div>
+          ))
         }
       </div>
     </div>

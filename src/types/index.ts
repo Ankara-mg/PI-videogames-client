@@ -1,7 +1,7 @@
 
 type BaseGame = {
   id?: string | number;
-  img: string;
+  img: string | null;
   name: string;
   rating: number;
   created?: boolean;

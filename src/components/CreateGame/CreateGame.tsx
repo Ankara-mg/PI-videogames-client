@@ -56,7 +56,7 @@ const CreateGame = () => {
     const name = e.target.name as keyof DbGame;
     const value = e.target.value;
     const saved = input[name];
-    
+
     if (Array.isArray(saved) && name.indexOf(value) == -1) {
       setInput({
         ...input,
@@ -102,7 +102,7 @@ const CreateGame = () => {
           description: '',
           release: '',
           rating: 1,
-          img: '',
+          img: null,
           platforms: [],
           genres: [],
           created: true,
@@ -178,12 +178,12 @@ const CreateGame = () => {
           <label>Imagen</label>
           <input
             type="text"
-            value={input.img}
+            value={input.img ?? ''}
             name='img'
             onChange={handleInputChange}
             className={styles.input}
           />
-          {!errors.img && <img src={input.img} className={input.img && styles.formImage} />}
+          {!!input.img && <img src={input.img} className={styles.formImage} />}
           {errors.img && <p className={styles.formErrors}>{errors.img}</p>}
         </div>
 
@@ -218,13 +218,14 @@ const CreateGame = () => {
             onChange={handleSelect}
             className={styles.input}
           >
-            <option disabled selected>Seleccione las plataformas</option>
+            <option disabled defaultValue='none'>Seleccione las plataformas</option>
             {
               platforms?.map(p => (
                 <option value={p} key={p}>
                   {p}
                 </option>
-              ))}
+              ))
+            }
           </select>
           {input.platforms?.map(p => {
             return (
@@ -246,7 +247,7 @@ const CreateGame = () => {
             onChange={handleSelect}
             className={styles.input}
           >
-            <option disabled selected>Seleccione los géneros</option>
+            <option disabled defaultValue='none'>Seleccione los géneros</option>
             {
               genres?.map((g: Genre) => (
                 <option value={g.name} key={g.id}

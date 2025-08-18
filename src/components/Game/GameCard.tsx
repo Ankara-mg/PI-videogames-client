@@ -1,4 +1,4 @@
-import type { GameType } from 'src/types';
+import type { GameType, Genre } from 'src/types';
 import styles from './GameCard.module.css';
 
 const GameCard = (props: { videogame: GameType }) => {
@@ -8,7 +8,7 @@ const GameCard = (props: { videogame: GameType }) => {
   return (
     <div className={styles.cardContainer}>
       <div className={styles.cardImgContainer}>
-        <img src={videogame.img} alt={videogame.name} className={styles.gameImg} />
+        {!!videogame.img && <img src={videogame.img} alt={videogame.name} className={styles.gameImg} />}
       </div>
 
       <div className={styles.titleContain}>
@@ -16,13 +16,11 @@ const GameCard = (props: { videogame: GameType }) => {
       </div>
 
       <div className={styles.genresContainer}>
-        <div>{videogame.genres?.map((g) => {
-          return (
-            <div className={styles.genre}>
-              {typeof g === 'string' ? g : g.name}
-            </div>
-          )
-        })}</div>
+        <div>{videogame.genres?.map((g: Genre | string, key: number) => (
+          <div className={styles.genre} key={key}>
+            {typeof g === 'string' ? g : g.name}
+          </div>
+        ))}</div>
       </div>
       <div className={styles.rating}>Rating: {videogame.rating}</div>
     </div>

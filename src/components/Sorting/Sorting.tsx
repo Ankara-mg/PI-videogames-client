@@ -38,7 +38,7 @@ const Sorting = (props: { games: GameType[] }) => {
   return (
     <div className={styles.container}>
       <select id="sort" onChange={handleSelectOrden} className={styles.sortSelection}>
-        <option disabled selected>Ordenar por</option>
+        <option disabled defaultValue='none'>Ordenar por</option>
         <option value='rating'>Rating</option>
         <option value='name'>Nombre</option>
         <option value='default'>Por defecto</option>

@@ -30,12 +30,10 @@ const GameDetail = () => {
 
               <div className={styles.genresContainer}>
                 {Array.isArray(videogame.genres) &&
-                  videogame.genres?.map((g: Genre) => {
-                    return (
-                      <div className={styles.genres}>{g.name}</div>
-                    )
-                  })
-                }
+                  videogame.genres?.map((g: Genre, key: number) => (
+                    <div className={styles.genres} key={key}>{g.name}</div>
+                  )
+                )}
               </div>
             </div>
 
@@ -59,7 +57,7 @@ const GameDetail = () => {
                   {
                     Array.isArray(videogame.platforms) &&
                     videogame.platforms?.map((p: string) => (
-                      <p className={styles.platform}>{p}</p>
+                      <p className={styles.platform} key={p}>{p}</p>
                     ))
                   }
                 </div>
