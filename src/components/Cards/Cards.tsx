@@ -26,7 +26,7 @@ const Cards = (props: { videogames: GameType[], errors: string }) => {
             {
               videogames?.map((game: GameType, key: number) =>
                 <Link to={`/videogames/${game.id}`} key={key}>
-                  <GameCard videogames={game} />
+                  <GameCard videogame={game} />
                 </Link>
               )
             }
