@@ -23,7 +23,7 @@ const initialState = {
     errors: '',
 }
 
-export const videogameReducer = (state = initialState, action) => {
+export const videogameReducer = (state = initialState, action: any) => {
     switch(action.type){
         case TOGGLE_LOADING:
             return {
